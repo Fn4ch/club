@@ -1,7 +1,7 @@
 import { DanceStyle, MusicGenre } from "."
 import type { DanceStrategy } from "./DanceStrategy"
 
-export class Dancer {
+export class Person {
 
     id: number
     name: string
