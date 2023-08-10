@@ -1,21 +1,30 @@
-import { DanceStyle, MusicGenre } from "."
-import type { DanceStrategy } from "./DanceStrategy"
+import { MusicGenre } from "."
+import { DanceStrategy } from "./DanceStrategy"
 
 export class Person {
 
     id: number
     name: string
     danceStrategy: DanceStrategy
+    state: 'dancing' | 'drinking' | null = null
 
     constructor(name: string, danceStrategy: DanceStrategy) {
+        this.id = Math.random()
         this.name = name
         this.danceStrategy = danceStrategy
-        this.id = Math.random()
     }
 
-    dance(genre: keyof typeof MusicGenre) {
-        if (this.danceStrategy.canDanceToMusic(genre)) {
-            this.danceStrategy.performDance()
+    action(genre: MusicGenre) {
+        if (genre === this.danceStrategy.genre) {
+            this.danceStrategy.dance(this)
+            this.state = 'dancing'
+        } else {
+            this.goToBar(this)
+            this.state = 'drinking'
         }
+    }
+
+    goToBar(person: Person) {
+        console.log(`${person.name} пьёт водку в баре`)
     }
 }

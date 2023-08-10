@@ -1,37 +1,27 @@
-import { MusicGenre } from ".";
+import { MusicGenre } from "."
+import type { Person } from "./Person"
+import { Dance, Dances } from "./DanceStyles"
 
-export interface DanceStrategy {
-    canDanceToMusic(genre: keyof typeof MusicGenre): boolean;
+export class DanceStrategy{
+    genre: MusicGenre
+    danceType: Dance
 
-    performDance(): void;
-}
-
-export class HipHopDanceStrategy implements DanceStrategy {
-    canDanceToMusic(genre: keyof typeof MusicGenre): boolean {
-        return genre === 'Rnb';
+    constructor(genre: MusicGenre, danceType: Dance) {
+        this.genre = genre
+        this.danceType = danceType
     }
 
-    performDance(): void {
-        console.log("Танцует хипхоп")
-    }
-}
-
-export class ElectrodanceStrategy implements DanceStrategy {
-    canDanceToMusic(genre: keyof typeof MusicGenre): boolean {
-        return genre === 'ElectroHouse';
-    }
-
-    performDance(): void {
-        console.log("Танцует электродэнс")
+    dance(person: Person){
+        setTimeout(() => {
+            this.danceType.performDance(person)
+        })
     }
 }
 
-export class SmoothDanceStrategy implements DanceStrategy {
-    canDanceToMusic(genre: keyof typeof MusicGenre): boolean {
-        return genre === 'Pop';
-    }
-
-    performDance(): void {
-        console.log("Плавно танцует")
-    }
+export class danceStrategies{
+    static HipHopStrategy = new DanceStrategy(MusicGenre.Rnb, Dances.HipHopDance)
+    static RnbDanceStrategy = new DanceStrategy(MusicGenre.Rnb, Dances.HipHopDance)
+    static ElectrodanceDanceStrategy = new DanceStrategy(MusicGenre.Electrodance, Dances.ElectrodanceDance)
+    static houseDanceStrategy = new DanceStrategy(MusicGenre.Electrodance, Dances.ElectrodanceDance)
+    static popDanceStrategy = new DanceStrategy(MusicGenre.Pop, Dances.PopMusicDance)
 }

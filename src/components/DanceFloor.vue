@@ -9,5 +9,8 @@
 </script>
 
 <style lang="scss" scoped>
-    
+    .dance-floor{
+        display: flex;
+        justify-content: space-around;
+    }
 </style>

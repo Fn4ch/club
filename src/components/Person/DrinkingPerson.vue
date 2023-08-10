@@ -1,8 +1,8 @@
 <template>
-  <div class="dancer-container">
-    <div class="dancer__name">{{ name }}</div>
-      <div class="dancer" id="dancer">
-        <span class="dancer__head"></span>
+  <div class="person-container">
+    <div class="person__name">{{ name }}</div>
+      <div class="person" id="person">
+        <span class="person__head"></span>
         <div class="body">
           <div class="arm arm__left">
               <span class="arm__upper"></span>
@@ -28,49 +28,22 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
-
 defineProps({
   name: String
-})
-
-const dancer = ref<Element[]>([])
-
-onMounted(() => {
-  dancer.value = [...document.querySelectorAll('.dancer')]
-
-  dancer.value.forEach(dancer => {
-      const leftArm = dancer.querySelector('.arm__left .arm__lower') as HTMLElement
-      const rightArm = dancer.querySelector('.arm__right .arm__lower') as HTMLElement
-      const head = dancer.querySelector('.dancer__head') as HTMLElement
-      const body = dancer.querySelector('.body') as HTMLElement
-      // const leftLeg = dancer.querySelector('.legs__left .legs__lower') as HTMLElement
-      // const rightLeg = dancer.querySelector('.legs__left .legs__lower') as HTMLElement
-      console.log(leftArm, rightArm, head, body)
-      let i: number = 0
-    setInterval(() => {
-      if (leftArm && rightArm && head && body) {
-          head.style.scale = i % 2 === 0 ? '1' : '1.1'
-          leftArm.style.transform = i % 2 === 0 ? 'rotate(50deg)' : 'rotate(-20deg)'
-          rightArm.style.transform = i % 2 === 0 ? 'rotate(-50deg)' : 'rotate(20deg)'
-      }
-      i++
-    }, 1000)
-    })
 })
 </script>
 
 <style lang="scss" scoped>
-.dancer-container {
+.person-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: min-content;
 }
-.dancer {
+.person {
   width: 100px;
-  height: 100px;
+  height: 60px;
   position: relative;
   animation: dance 1s infinite alternate;
   display: flex;
@@ -90,50 +63,8 @@ onMounted(() => {
     position: absolute;
     transition: all 0.4s ease;
     left: 25px;
-    margin-top: -160px;
-    animation: headShaking 1.3s infinite alternate;
+    margin-top: -100px;
   }
-}
-.legs{
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: -5px;
-  span{
-    color: #0e0b0e;
-    width: 15px;
-    background-color: #0e0b0e;
-    border-radius: 50px;
-  }
-  &__left{
-    margin-right: -5px;
-    display: flex;
-    flex-direction: column;
-    transform-origin: top right;
-    transform: rotate(10deg);
-      .legs__lower{
-        transform: rotate(-15deg);
-      }
-    }
-    &__right{
-        display: flex;
-      flex-direction: column;
-      transform-origin: top left;
-      transform: rotate(-10deg);
-      .legs__lower{
-        transform: rotate(15deg);
-      }
-    }
-    &__upper{
-      height: 30px;
-    }
-    &__lower{
-      margin-top: -5px;
-      transition: all 0.4s ease;
-      height: 30px;
-      transform-origin: top;
-    }
 }
 
 .body{
@@ -143,11 +74,10 @@ onMounted(() => {
     justify-content: space-between;
     width: 100px;
     height: 90px;
-    animation: bodyShaking 1s infinite alternate;
     
     &__chest{
       background-color: #0e0b0e;
-      width: 15px;
+      width: 25px;
       height: 60px;
     }
 }
@@ -190,6 +120,7 @@ onMounted(() => {
       transform-origin: top;
     }
 }
+/*
   @keyframes leftHand {
     0% {
       transform: rotate(0deg);
@@ -236,5 +167,5 @@ onMounted(() => {
     100% {
       transform: rotateX(10deg);
     }
-  }
+  }*/
 </style>
