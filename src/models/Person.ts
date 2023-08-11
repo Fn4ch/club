@@ -1,17 +1,20 @@
 import { MusicGenre } from "."
 import { DanceStrategy } from "./DanceStrategy"
+import { DrinkPreference } from "./DrinkPreference"
 
 export class Person {
 
     id: number
     name: string
     danceStrategy: DanceStrategy
+    drinkPreference: DrinkPreference
     state: 'dancing' | 'drinking' | null = null
 
-    constructor(name: string, danceStrategy: DanceStrategy) {
+    constructor(name: string, danceStrategy: DanceStrategy, drinkPreference: DrinkPreference) {
         this.id = Math.random()
         this.name = name
         this.danceStrategy = danceStrategy
+        this.drinkPreference = drinkPreference
     }
 
     action(genre: MusicGenre) {
@@ -25,6 +28,6 @@ export class Person {
     }
 
     goToBar(person: Person) {
-        console.log(`${person.name} пьёт водку в баре`)
+        this.drinkPreference.drink(this)
     }
 }

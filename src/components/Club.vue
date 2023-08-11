@@ -10,7 +10,10 @@
                 <DancingPerson v-for="p in dancingPersons" :key="p.id" :id="`person_${p.id}`" :name="p.name" />
             </div>
             <div class="drink-bar">
-                <DrinkingPerson v-for="p in barCustomers" :key="p.id" :id="`person_${p.id}`" :name="p.name" />
+                <div class="drink-bar__seats">
+                    <DrinkingPerson v-for="p in barCustomers" :key="p.id" :id="`person_${p.id}`" :name="p.name" />
+                </div>
+                <div class="drink-bar__counter">Бар</div>
             </div>
         </div>
     </div>
@@ -24,6 +27,7 @@ import { danceStrategies } from '@/models/DanceStrategy'
 import { MusicGenre } from '@/models'
 import DancingPerson from '@/components/Person/DancingPerson.vue'
 import DrinkingPerson from '@/components/Person/DrinkingPerson.vue'
+import { DrinkPreferencies } from '@/models/DrinkPreference'
 
 const dancingPersons = ref<Person[]>([])
 const barCustomers = ref<Person[]>([])
@@ -31,14 +35,14 @@ const club = ref<Club>(new Club())
 
 onMounted(() => {
 
-const dancer1 = new Person('Oleg', danceStrategies.HipHopStrategy)
-const dancer2 = new Person('Petya', danceStrategies.ElectrodanceDanceStrategy)
-const dancer3 = new Person('Kate', danceStrategies.RnbDanceStrategy)
-const dancer4 = new Person('Vasya', danceStrategies.houseDanceStrategy)
-const dancer5 = new Person('Diana', danceStrategies.popDanceStrategy)
-const dancer6 = new Person('Anya', danceStrategies.RnbDanceStrategy)
-const dancer7 = new Person('Leo', danceStrategies.popDanceStrategy)
-const dancer8 = new Person('Kris', danceStrategies.houseDanceStrategy)
+const dancer1 = new Person('Oleg', danceStrategies.HipHopStrategy, DrinkPreferencies.vodka)
+const dancer2 = new Person('Petya', danceStrategies.ElectrodanceDanceStrategy, DrinkPreferencies.vodka)
+const dancer3 = new Person('Kate', danceStrategies.RnbDanceStrategy, DrinkPreferencies.vodka)
+const dancer4 = new Person('Vasya', danceStrategies.houseDanceStrategy, DrinkPreferencies.vodka)
+const dancer5 = new Person('Diana', danceStrategies.popDanceStrategy, DrinkPreferencies.vodka)
+const dancer6 = new Person('Anya', danceStrategies.RnbDanceStrategy, DrinkPreferencies.vodka)
+const dancer7 = new Person('Leo', danceStrategies.popDanceStrategy, DrinkPreferencies.vodka)
+const dancer8 = new Person('Kris', danceStrategies.houseDanceStrategy, DrinkPreferencies.vodka)
 
 const persons: Person[] = [dancer1, dancer2, dancer3, dancer4, dancer5, dancer6, dancer7, dancer8]
 
@@ -91,6 +95,13 @@ const playPop = () => {
             }
         }
     }
+    &__content{
+        display: flex;
+        flex-direction: column;
+        align-content: space-between;
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .dance-floor{
@@ -98,15 +109,29 @@ const playPop = () => {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    height: 100%;
     gap: 64px;
+    padding: 64px;
 }
 
 .drink-bar{
     margin-top: 40px;
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 64px;
+    flex-direction: column;
+    justify-content: flex-end;
+    &__seats{
+        padding: 0 64px;
+        display: flex;
+        gap: 64px;
+    }
+    &__counter{
+        text-align: center;
+        text-justify: center;
+        width: 100%;
+        background-color: #415bce;
+        color: #fff;
+        height: 120px;
+    }
 }
     
 </style>
