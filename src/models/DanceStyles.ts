@@ -13,7 +13,6 @@ export class Dances {
     static HipHopDance = new Dance((person) => {
         const dancer: HTMLElement | null = document.getElementById(`person_${person.id}`)
         if (dancer) {
-            console.log('dancer found ', dancer)
             const leftLowerArm = dancer.querySelector('.arm__left .arm__lower') as HTMLElement
             const rightLowerArm = dancer.querySelector('.arm__right .arm__lower') as HTMLElement
             const head = dancer.querySelector('.person__head') as HTMLElement
@@ -41,7 +40,6 @@ export class Dances {
     static ElectrodanceDance = new Dance((person: Person) => {
         const dancer: HTMLElement | null = document.getElementById(`person_${person.id}`)
         if (dancer) {
-            console.log('dancer found ', dancer)
             const leftArm = dancer.querySelector('.arm__left') as HTMLElement
             const rightArm = dancer.querySelector('.arm__right') as HTMLElement
             const head = dancer.querySelector('.person__head') as HTMLElement
@@ -51,8 +49,6 @@ export class Dances {
             const leftLowerArm = dancer.querySelector('.arm__left .arm__lower') as HTMLElement
             const rightLowerArm = dancer.querySelector('.arm__right .arm__lower') as HTMLElement
             const leftLowerLeg = dancer.querySelector('.legs__left .legs__lower') as HTMLElement
-            const rightLowerLeg = dancer.querySelector('.legs__right .legs__lower') as HTMLElement
-            console.log(leftLowerLeg)
             let i: number = 0
             setInterval(() => {
                 if (leftArm && rightArm && head && body) {
@@ -80,7 +76,6 @@ export class Dances {
     static PopMusicDance = new Dance((person: Person) => {
         const dancer: HTMLElement | null = document.getElementById(`person_${person.id}`)
         if (dancer) {
-            console.log('dancer found ', dancer)
             const leftArm = dancer.querySelector('.arm__left') as HTMLElement
             const rightArm = dancer.querySelector('.arm__right') as HTMLElement
             const head = dancer.querySelector('.person__head') as HTMLElement

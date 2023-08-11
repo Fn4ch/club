@@ -3,6 +3,7 @@ import { MusicGenre } from "."
 
 export class Club {
 
+    private playingMusic: MusicGenre | null = null
     private persons: Person[] = []
 
     addPerson(person: Person) {
@@ -11,6 +12,11 @@ export class Club {
 
     playMusic(genre: MusicGenre): void { 
         this.persons.forEach(p => p.action(genre))
+        this.playingMusic = genre
+    }
+
+    getPlayingMusic() {
+        return this.playingMusic
     }
 
     getPersonsOnDanceFloor() {

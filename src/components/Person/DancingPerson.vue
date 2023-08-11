@@ -47,7 +47,6 @@ defineProps({
   width: 100px;
   height: 100px;
   position: relative;
-  // animation: dance 1s infinite alternate;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,7 +55,7 @@ defineProps({
   transform: rotateY(15deg);
 
   &__name{
-    margin-bottom: 50px;
+    margin-bottom: 70px;
   }
 
   &__head {
@@ -150,18 +149,15 @@ defineProps({
       width: fit-content;
       .arm__lower{
         transform-origin: top right;
-        animation: leftHand 1.5s infinite alternate;
       }
     }
     &__right{
       transition: all 0.4s ease;
         transform: rotate(-35deg);
-        animation: rightHand infinite alternate;
         width: fit-content;
         transform-origin: top right;
         .arm__lower{
           transform-origin: top left;
-          animation: rightHand 1.4s infinite alternate;
         }
     }
     &__upper{

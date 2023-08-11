@@ -22,12 +22,12 @@ export class Person {
             this.danceStrategy.dance(this)
             this.state = 'dancing'
         } else {
-            this.goToBar(this)
+            this.goToBar()
             this.state = 'drinking'
         }
     }
 
-    goToBar(person: Person) {
+    goToBar() {
         this.drinkPreference.drink(this)
     }
 }
