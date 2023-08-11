@@ -13,7 +13,10 @@
             </div>
             <div class="drink-bar">
                 <div class="drink-bar__seats">
-                    <DrinkingPerson v-for="p in barCustomers" :key="p.id" :id="`person_${p.id}`" :name="p.name" />
+                    <div v-for="p in barCustomers" :key="p.id">
+                        <DrinkingPerson :key="p.id" :id="`person_${p.id}`" :name="p.name" />
+                        <div  class="drink-bar__table"></div>
+                    </div>
                 </div>
                 <div class="drink-bar__counter">Бар</div>
             </div>
@@ -65,17 +68,20 @@ const playMusic = (genre: MusicGenre) => {
 
 <style lang="scss" scoped>
 h3{
-    
+    margin-top: 12px;
 }
 .club{
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: 600px;
+    justify-content: space-between;
     width: 1280px;
+    min-height: 100vh;
     background-color: #d1d5eb;
     @media (max-width: 1280px) {
         width: 100%;
+        height: auto;
+
     }
     &__controllers{
         display: flex;
@@ -98,43 +104,61 @@ h3{
         flex-direction: column;
         align-content: space-between;
         width: 100%;
-        height: 100%;
     }
 }
 
 .dance-floor{
-    margin-top: 40px;
+    margin-top: 16px;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
     align-items: center;
-    height: 100%;
-    gap: 64px;
-    padding: 64px;
+    flex-wrap: wrap;
+    gap: 80px;
+    padding: 0 64px;
 }
 
 .drink-bar{
-    margin-top: 40px;
+    margin-top: 32px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    width: 100%;
+    @media (max-width: 1024px) {
+        flex-direction: row;
+    }
+    &__table{
+        display: none;
+        @media (max-width: 1024px) {
+            display: flex;
+            width: 100px;
+            height: 80px;
+            background-color: #415bce;
+            margin-top: -5px;
+        }
+    }
     &__seats{
         z-index: 1;
         padding: 0 64px;
         display: flex;
-        gap: 64px;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 48px;
         margin-bottom: -5px;
     }
     &__counter{
+        display: inline;
         z-index: 0;
-        align-self: center;
         text-align: center;
         padding: 20px;
         width: 100%;
         background-color: #415bce;
         color: #fff;
         height: 120px;
+        @media (max-width: 1024px) {
+            display: none;
+        }
     }
 }
     
